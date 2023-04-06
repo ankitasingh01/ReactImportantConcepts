@@ -1,0 +1,16 @@
+.modal-container {
+  position: absolute;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 340px;
+  width: 340px;
+  background-color: rgba(0, 0, 0, 0.452);
+
+  .modal-heading {
+  }
+}
