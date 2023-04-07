@@ -5,6 +5,7 @@ import PortalComponent from "./components/PortalComponent";
 import RefsComponent from "./components/RefsComponent";
 import RenderPropsComponent from "./components/RenderPropsComponent";
 import FormComp from "./components/FormComp/FormComp";
+import UseContextComponent from "./components/UseContextComponent";
 
 class App extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <UseContextComponent />
         {/* <RenderPropsComponent /> */}
         {/* <HOCUseCaseCounter /> */}
         {/* <ErrorParentComp /> */}
