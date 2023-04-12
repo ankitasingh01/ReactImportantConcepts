@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Outlet } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { UserContext } from "../context/UserContextProvider";
 import { Grid, Backdrop, CircularProgress } from "@mui/material";
@@ -10,6 +11,7 @@ const SampleA = () => {
 
   return (
     <React.Fragment>
+      <Outlet />
       {loading && !postData.length && (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}

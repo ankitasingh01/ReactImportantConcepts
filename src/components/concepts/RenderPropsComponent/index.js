@@ -1,4 +1,4 @@
-import CounterRenderProp from "../../common/RenderProps/CounterRenderProp";
+import CounterRenderProp from "../../../common/RenderProps/CounterRenderProp";
 import RenderCompChild from "./RenderCompChild";
 import React from "react";
 // Example of Render Prop

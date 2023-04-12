@@ -1,8 +1,4 @@
-import React, { Fragment } from "react";
-// import { useForm, Controller } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import * as Yup from "yup";
-
+import React, { Fragment, useState } from "react";
 import {
   Paper,
   Box,
@@ -13,45 +9,53 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
+import axios from "axios";
+
+const initialStateForm = {
+  fullName: "",
+  username: "",
+  emailId: "",
+  password: "",
+  confirmPassword: "",
+  termsAndCondition: true,
+};
 
 const SampleC = () => {
-  // const validationSchema = Yup.object().shape({
-  //   fullname: Yup.string().required("Fullname is required"),
-  //   username: Yup.string()
-  //     .required("Username is required")
-  //     .min(6, "Username must be at least 6 characters")
-  //     .max(20, "Username must not exceed 20 characters"),
-  //   email: Yup.string().required("Email is required").email("Email is invalid"),
-  //   password: Yup.string()
-  //     .required("Password is required")
-  //     .min(6, "Password must be at least 6 characters")
-  //     .max(40, "Password must not exceed 40 characters"),
-  //   confirmPassword: Yup.string()
-  //     .required("Confirm Password is required")
-  //     .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
-  //   acceptTerms: Yup.bool().oneOf([true], "Accept Terms is required"),
-  // });
+  const [formData, setFormData] = useState(initialStateForm);
 
-  // const {
-  //   register,
-  //   control,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   resolver: yupResolver(validationSchema),
-  // });
+  const handleSubmit = () => {
+    console.log("formData", formData);
+    const newFormData = {
+      name: formData.fullName,
+      username: formData.username,
+      email: formData.emailId,
+      address: {},
+      phone: 123123,
+      website: formData.emailId,
+      company: {},
+    };
 
-  const onSubmit = (data) => {
-    console.log(JSON.stringify(data, null, 2));
+    axios
+      .post("https://jsonplaceholder.typicode.com/users", newFormData)
+      .then((response) => console.log("response", response))
+      .catch((error) => console.log("error", error));
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    // console.log("name, value", name, value);
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
   };
 
   return (
     <Fragment>
       <Typography align="center" gutterBottom>
-        <a
-          href="https://bezkoder.com/react-hook-form-material-ui-validation"
-          target="_blank"
-        >
+        <a href="" target="_blank">
           BezKoder.com
         </a>
       </Typography>
@@ -67,10 +71,11 @@ const SampleC = () => {
               <TextField
                 required
                 id="fullname"
-                name="fullname"
+                name="fullName"
                 label="Full Name"
                 fullWidth
                 margin="dense"
+                onChange={handleChange}
                 // {...register("fullname")}
                 // error={errors.fullname ? true : false}
               />
@@ -86,6 +91,8 @@ const SampleC = () => {
                 label="Username"
                 fullWidth
                 margin="dense"
+                onChange={handleChange}
+
                 // {...register("username")}
                 // error={errors.username ? true : false}
               />
@@ -97,10 +104,12 @@ const SampleC = () => {
               <TextField
                 required
                 id="email"
-                name="email"
+                name="emailId"
                 label="Email"
                 fullWidth
                 margin="dense"
+                onChange={handleChange}
+
                 // {...register("email")}
                 // error={errors.email ? true : false}
               />
@@ -117,6 +126,8 @@ const SampleC = () => {
                 type="password"
                 fullWidth
                 margin="dense"
+                onChange={handleChange}
+
                 // {...register("password")}
                 // error={errors.password ? true : false}
               />
@@ -133,6 +144,8 @@ const SampleC = () => {
                 type="password"
                 fullWidth
                 margin="dense"
+                onChange={handleChange}
+
                 // {...register("confirmPassword")}
                 // error={errors.confirmPassword ? true : false}
               />
@@ -144,8 +157,9 @@ const SampleC = () => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    name="termsAndCondition"
                     color="primary"
-                    onChange={(e) => onChange(e.target.checked)}
+                    onChange={handleChange}
                   />
                 }
                 label={
@@ -165,11 +179,7 @@ const SampleC = () => {
           </Grid>
 
           <Box mt={3}>
-            <Button
-              variant="contained"
-              color="primary"
-              // onClick={handleSubmit(onSubmit)}
-            >
+            <Button variant="contained" color="primary" onClick={handleSubmit}>
               Register
             </Button>
           </Box>

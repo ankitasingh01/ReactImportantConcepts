@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-
+//https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
+// For axios understanding check out the above link
 const initialData = {
   postData: [],
   loading: true,
@@ -14,15 +15,21 @@ export const UserContextProvider = ({ children }) => {
   const { postData, loading, error } = allData;
   useEffect(() => {
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => {
-        setAllData((prevState) => {
-          return {
-            ...prevState,
-            postData: response.data,
-          };
-        });
-      })
+      .all([
+        axios.get("https://jsonplaceholder.typicode.com/posts"),
+        axios.get("https://jsonplaceholder.typicode.com/users"),
+      ])
+      .then(
+        axios.spread((response, newUSer) => {
+          console.log("newUser", newUSer);
+          setAllData((prevState) => {
+            return {
+              ...prevState,
+              postData: response.data,
+            };
+          });
+        })
+      )
       .catch((error) => {
         setAllData((prevState) => {
           return {
