@@ -1,5 +1,5 @@
 import React from "react";
-import CounterHOC from "../../common/HOCs/CounterHOC";
+import CounterHOC from "../../../common/HOCs/CounterHOC";
 
 const ChangeCounter = (props) => {
   const { count, increaseCount } = props;
