@@ -1,3 +1,5 @@
+// https://codesandbox.io/s/uld12?file=/src/App.js
+// This sample is taken from
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 
@@ -76,7 +78,7 @@ import "./sass/style.scss";
 // Footer
 import Footer from "./template/Footer";
 
-const App = () => {
+const SampleMaterialUICard = () => {
   const theme = useTheme();
 
   // My card preferences
@@ -87,9 +89,9 @@ const App = () => {
   };
 
   return (
-    // App
+    // SampleMaterialUICard
 
-    <div className="App">
+    <div className="SampleMaterialUICard">
       <Container maxWidth="xl">
         <Grid container spacing={3} component={Masonry}>
           {/* Grid Card */}
@@ -2275,4 +2277,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default SampleMaterialUICard;

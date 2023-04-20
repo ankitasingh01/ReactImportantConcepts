@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import {
   Paper,
   Box,
@@ -10,6 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import axios from "axios";
+import { UserContext } from "../context/UserContextProvider";
 
 const initialStateForm = {
   fullName: "",
@@ -21,25 +22,8 @@ const initialStateForm = {
 };
 
 const SampleC = () => {
+  const { handleSubmit } = useContext(UserContext);
   const [formData, setFormData] = useState(initialStateForm);
-
-  const handleSubmit = () => {
-    console.log("formData", formData);
-    const newFormData = {
-      name: formData.fullName,
-      username: formData.username,
-      email: formData.emailId,
-      address: {},
-      phone: 123123,
-      website: formData.emailId,
-      company: {},
-    };
-
-    axios
-      .post("https://jsonplaceholder.typicode.com/users", newFormData)
-      .then((response) => console.log("response", response))
-      .catch((error) => console.log("error", error));
-  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -56,7 +40,7 @@ const SampleC = () => {
     <Fragment>
       <Typography align="center" gutterBottom>
         <a href="" target="_blank">
-          BezKoder.com
+          Bombay Marilyn
         </a>
       </Typography>
 
@@ -179,7 +163,11 @@ const SampleC = () => {
           </Grid>
 
           <Box mt={3}>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handleSubmit(formData)}
+            >
               Register
             </Button>
           </Box>

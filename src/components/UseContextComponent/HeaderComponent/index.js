@@ -31,10 +31,20 @@ const pages = [
     routerLink: "/signup",
   },
   {
-    id: 3,
-    name: "Table",
-    routerLink: "/table",
+    id: 4,
+    name: "Followers",
+    routerLink: "/followers",
   },
+  {
+    id: 5,
+    name: "Store",
+    routerLink: "/store-collection",
+  },
+  // {
+  //   id: 6,
+  //   name: "SampleCards",
+  //   routerLink: "/allCards",
+  // },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
